@@ -20,16 +20,19 @@ namespace xadrez_console
                 board.AddPiece(new King(Color.Black, board), new Position(0, 0));
                 board.AddPiece(new Queen(Color.Black, board), new Position(0, 5));
 
+                board.AddPiece(new King(Color.White, board), new Position(6, 3));
+                board.AddPiece(new Horse(Color.White, board), new Position(4, 5));
+
                 Screen.ShowBoard(board);
             }
-            catch(BoardException e)
+            catch (BoardException e)
             {
                 Console.WriteLine(e.Message);
             }
-            
+
 
             Console.ReadLine();
 
-        }    
+        }
     }
 }

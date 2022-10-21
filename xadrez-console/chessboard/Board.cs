@@ -33,7 +33,7 @@ namespace xadrez_console.chessboard
 
         public void AddPiece(ChessPiece p, Position pos)
         {
-            if(AlrearyExistPiece(pos))
+            if (AlrearyExistPiece(pos))
             {
                 throw new BoardException("There's an piece at this position!");
             }

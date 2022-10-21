@@ -8,9 +8,9 @@ using xadrez_console.chessboard.Enums;
 
 namespace xadrez_console.game
 {
-    internal class Knight : ChessPiece
+    internal class Horse : ChessPiece
     {
-        public Knight(Color color, Board board) : base(color, board)
+        public Horse(Color color, Board board) : base(color, board)
         {
         }
 
