@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace xadrez_console.chessboard.Enums
+namespace xadrez_console.chessboard
 {
-    public enum Color
+    public class Board
     {
-        Black,
-        White
     }
 }
