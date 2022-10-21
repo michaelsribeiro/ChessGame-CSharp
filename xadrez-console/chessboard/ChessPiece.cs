@@ -21,5 +21,10 @@ namespace xadrez_console.chessboard
             Movements = 0;
             Board = board;
         }
+
+        public void IncrementMovements()
+        {
+            Movements++;
+        }
     }
 }

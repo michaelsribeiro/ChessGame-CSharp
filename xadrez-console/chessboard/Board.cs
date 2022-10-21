@@ -41,6 +41,19 @@ namespace xadrez_console.chessboard
             p.Position = pos;
         }
 
+        public ChessPiece RemovePiece(Position pos)
+        {
+            if (piece(pos.Line, pos.Column) == null)
+            {
+                return null;
+            }
+
+            ChessPiece aux = piece(pos.Line, pos.Column);
+            aux.Position = null;
+            _pieces[pos.Line, pos.Column] = null;
+            return aux;
+        }
+
         public bool PositionValid(Position pos)
         {
             if (pos.Line < 0 || pos.Line >= Lines || pos.Column < 0 || pos.Column >= Columns)
