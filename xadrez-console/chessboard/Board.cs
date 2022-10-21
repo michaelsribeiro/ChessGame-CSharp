@@ -18,5 +18,10 @@ namespace xadrez_console.chessboard
             Columns = columns;
             _pieces = new ChessPiece[Lines, Columns];
         }
+
+        public ChessPiece piece(int lines, int columns)
+        {
+            return _pieces[Lines, Columns];
+        }
     }
 }
