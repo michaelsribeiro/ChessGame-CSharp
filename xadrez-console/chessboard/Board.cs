@@ -25,10 +25,37 @@ namespace xadrez_console.chessboard
             return _pieces[lines, columns];
         }
 
+        public bool AlrearyExistPiece(Position pos)
+        {
+            ValidatePosition(pos);
+            return piece(pos.Line, pos.Column) != null;
+        }
+
         public void AddPiece(ChessPiece p, Position pos)
         {
+            if(AlrearyExistPiece(pos))
+            {
+                throw new BoardException("There's an piece at this position!");
+            }
             _pieces[pos.Line, pos.Column] = p;
             p.Position = pos;
+        }
+
+        public bool PositionValid(Position pos)
+        {
+            if (pos.Line < 0 || pos.Line >= Lines || pos.Column < 0 || pos.Column >= Columns)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void ValidatePosition(Position pos)
+        {
+            if (!PositionValid(pos))
+            {
+                throw new BoardException("Invalid position!");
+            }
         }
     }
 }

@@ -13,12 +13,20 @@ namespace xadrez_console
     {
         public static void Main(String[] args)
         {
-            Board board = new Board(8, 8);
+            try
+            {
+                Board board = new Board(8, 8);
 
-            board.AddPiece(new King(Color.Black, board), new Position(0, 0));
-            board.AddPiece(new Queen(Color.Black, board), new Position(3, 5));
+                board.AddPiece(new King(Color.Black, board), new Position(0, 0));
+                board.AddPiece(new Queen(Color.Black, board), new Position(0, 5));
 
-            Screen.ShowBoard(board);
+                Screen.ShowBoard(board);
+            }
+            catch(BoardException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
 
             Console.ReadLine();
 
