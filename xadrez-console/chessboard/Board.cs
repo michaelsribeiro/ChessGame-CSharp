@@ -10,6 +10,7 @@ namespace xadrez_console.chessboard
     {
         public int Lines { get; set; }
         public int Columns { get; set; }
+
         private ChessPiece[,] _pieces;
 
         public Board(int lines, int columns)
@@ -21,7 +22,13 @@ namespace xadrez_console.chessboard
 
         public ChessPiece piece(int lines, int columns)
         {
-            return _pieces[Lines, Columns];
+            return _pieces[lines, columns];
+        }
+
+        public void AddPiece(ChessPiece p, Position pos)
+        {
+            _pieces[pos.Line, pos.Column] = p;
+            p.Position = pos;
         }
     }
 }
