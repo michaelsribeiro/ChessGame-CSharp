@@ -14,6 +14,12 @@ namespace xadrez_console.chessboard
         public int Movements { get; protected set; }
         public Board Board { get; protected set; }
 
-
+        public ChessPiece(Position position, Color color, Board board)
+        {
+            Position = position;
+            Color = color;
+            Movements = 0;
+            Board = board;
+        }
     }
 }
