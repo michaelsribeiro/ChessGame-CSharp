@@ -19,24 +19,37 @@ namespace xadrez_console
 
                 while (!game.EndGame)
                 {
-                    Console.Clear();
-                    Screen.ShowBoard(game.Board);
+                    try
+                    {
+                        Console.Clear();
+                        Screen.ShowBoard(game.Board);
+                        Console.WriteLine();
 
-                    Console.WriteLine();
-                    Console.Write(" Origin: ");
-                    Position origin = Screen.ReadKeyboardInput().ToPosition();
+                        Console.WriteLine(" Turn: " + game.Shift);
+                        Console.WriteLine(" Waiting player: " + game.CurrentPlayer);
 
-                    bool[,] possibleMovements = game.Board.Piece(origin).PossibleMovements();
+                        Console.WriteLine();
+                        Console.Write(" Origin: ");
+                        Position origin = Screen.ReadKeyboardInput().ToPosition();
+                        game.ValidateOriginPosition(origin);
 
-                    Console.Clear();
-                    Screen.ShowBoard(game.Board, possibleMovements);
+                        bool[,] possibleMovements = game.Board.Piece(origin).PossibleMovements();
 
-                    Console.WriteLine();
-                    Console.Write(" Destiny: ");
-                    Position destiny = Screen.ReadKeyboardInput().ToPosition();
+                        Console.Clear();
+                        Screen.ShowBoard(game.Board, possibleMovements);
 
-                    game.Move(origin, destiny);
+                        Console.WriteLine();
+                        Console.Write(" Destiny: ");
+                        Position destiny = Screen.ReadKeyboardInput().ToPosition();
+                        game.ValidateDestinyPosition(origin, destiny);
 
+                        game.MakeMove(origin, destiny);
+                    }
+                    catch (BoardException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
             }
             catch (BoardException e)
