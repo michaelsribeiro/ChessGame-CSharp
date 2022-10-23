@@ -12,13 +12,13 @@ namespace xadrez_console.game
         public int Line { get; set; }
         public char Column { get; set; }
 
-        public BoardPosition(int line, char column)
+        public BoardPosition(char column, int line)
         {
             Line = line;
             Column = column;
         }
 
-        public Position toPosition()
+        public Position ToPosition()
         {
             return new Position(8 - Line, Column - 'a');
         }

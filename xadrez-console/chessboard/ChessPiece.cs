@@ -7,7 +7,7 @@ using xadrez_console.chessboard.Enums;
 
 namespace xadrez_console.chessboard
 {
-    public class ChessPiece
+    public abstract class ChessPiece
     {
         public Position Position { get; set; }
         public Color Color { get; protected set; }
@@ -26,5 +26,7 @@ namespace xadrez_console.chessboard
         {
             Movements++;
         }
+
+        public abstract bool[,] PossibleMovements();
     }
 }

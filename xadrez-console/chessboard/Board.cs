@@ -11,24 +11,28 @@ namespace xadrez_console.chessboard
         public int Lines { get; set; }
         public int Columns { get; set; }
 
-        private ChessPiece[,] _pieces;
+        private ChessPiece[,] pieces;
 
         public Board(int lines, int columns)
         {
             Lines = lines;
             Columns = columns;
-            _pieces = new ChessPiece[Lines, Columns];
+            pieces = new ChessPiece[Lines, Columns];
         }
 
-        public ChessPiece piece(int lines, int columns)
+        public ChessPiece Piece(int Lines, int Columns)
         {
-            return _pieces[lines, columns];
+            return pieces[Lines, Columns];
+        }
+        public ChessPiece Piece(Position pos)
+        {
+            return pieces[pos.Line, pos.Column];
         }
 
         public bool AlrearyExistPiece(Position pos)
         {
             ValidatePosition(pos);
-            return piece(pos.Line, pos.Column) != null;
+            return Piece(pos) != null;
         }
 
         public void AddPiece(ChessPiece p, Position pos)
@@ -37,20 +41,20 @@ namespace xadrez_console.chessboard
             {
                 throw new BoardException("There's an piece at this position!");
             }
-            _pieces[pos.Line, pos.Column] = p;
+            pieces[pos.Line, pos.Column] = p;
             p.Position = pos;
         }
 
         public ChessPiece RemovePiece(Position pos)
         {
-            if (piece(pos.Line, pos.Column) == null)
+            if (Piece(pos) == null)
             {
                 return null;
             }
 
-            ChessPiece aux = piece(pos.Line, pos.Column);
+            ChessPiece aux = Piece(pos);
             aux.Position = null;
-            _pieces[pos.Line, pos.Column] = null;
+            pieces[pos.Line, pos.Column] = null;
             return aux;
         }
 

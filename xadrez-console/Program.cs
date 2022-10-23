@@ -15,18 +15,35 @@ namespace xadrez_console
         {
             try
             {
-                ChessGame game = new ChessGame();              
+                ChessGame game = new ChessGame();
 
-                Screen.ShowBoard(game.Board);
+                while (!game.EndGame)
+                {
+                    Console.Clear();
+                    Screen.ShowBoard(game.Board);
+
+                    Console.WriteLine();
+                    Console.Write(" Origin: ");
+                    Position origin = Screen.ReadKeyboardInput().ToPosition();
+
+                    bool[,] possibleMovements = game.Board.Piece(origin).PossibleMovements();
+
+                    Console.Clear();
+                    Screen.ShowBoard(game.Board, possibleMovements);
+
+                    Console.WriteLine();
+                    Console.Write(" Destiny: ");
+                    Position destiny = Screen.ReadKeyboardInput().ToPosition();
+
+                    game.Move(origin, destiny);
+
+                }
             }
             catch (BoardException e)
             {
                 Console.WriteLine(e.Message);
             }
-
-
             Console.ReadLine();
-
         }
     }
 }

@@ -13,12 +13,14 @@ namespace xadrez_console.game
         public Board Board { get; private set; }
         private int shift;
         private Color currentPlayer;
+        public bool EndGame { get; private set; }
 
         public ChessGame()
         {
             Board = new Board(8, 8);
             shift = 1;
             currentPlayer = Color.White;
+            EndGame = false;
             InputPieces();
         }
 
@@ -32,8 +34,10 @@ namespace xadrez_console.game
 
         private void InputPieces()
         {
-            Board.AddPiece(new King(Color.Black, Board), new BoardPosition(8, 'e').toPosition());
-            Board.AddPiece(new Horse(Color.White, Board), new BoardPosition(2, 'd').toPosition());
+            Board.AddPiece(new King(Color.Black, Board), new BoardPosition('e', 8).ToPosition());
+            Board.AddPiece(new Horse(Color.White, Board), new BoardPosition('d', 6).ToPosition());
+            Board.AddPiece(new Tower(Color.Black, Board), new BoardPosition('a', 8).ToPosition());
+            Board.AddPiece(new Tower(Color.White, Board), new BoardPosition('h', 1).ToPosition());
         }
     }
 }
